@@ -1,21 +1,48 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
+    "outDir": "./build",
     "target": "ES2021",
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noImplicitAny": false,
+    "rootDir": "./",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "downlevelIteration": true,
+    "allowJs": true,
+    "jsx": "react",
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/node_modules/@types"
+    ],
+    "ignoreDeprecations": "5.0",
+    "noFallthroughCasesInSwitch": false,
+    "strictBindCallApply": false,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "incremental": true,
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "webpack.config.js",
+    "build",
+    "releas"
+  ]
 }

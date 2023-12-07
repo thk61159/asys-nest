@@ -1,9 +1,11 @@
 pnpm-lock.yaml
-
+.env
+.*
 # compiled output
 /dist
 /node_modules
-
+/build
+/release
 # Logs
 logs
 *.log

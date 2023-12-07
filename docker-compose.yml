@@ -1,0 +1,68 @@
+version: '3'
+services:
+  server:
+    build: 
+      dockerfile: Dockerfile
+      context: ./
+    container_name: server
+    environment:
+      - PORT=24689
+      - NODE_ENV=development
+    ports: 
+      - ${PORT}:${PORT}
+    volumes:
+      # for read the local edit code
+      - ./:/app
+      # use Anonymous volume
+      - node_modules:/app/node_modules
+      # for sqlite 
+      - ./.sqlite-db:/app/sqlite-db
+      - ./pnpm-lock.yaml:/app/pnpm-lock.yaml
+    # depends_on: 
+      # - mongo
+      # - mysql
+
+    command: yarn start:debug
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+    ports: 
+      - "27015:27017"
+    volumes:
+      - mongo-db:/data/db
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+    - MYSQL_ROOT_USER=root
+    - MYSQL_ROOT_PASSWORD=password
+    ports: 
+    - "3305:3306"
+    volumes:
+    - mysql-db:/var/lib/mysql
+
+
+volumes:
+  mongo-db:
+    name: mongo-db
+  mysql-db:
+    name: mysql-db
+  node_modules:
+    name: node_modules
+
+
+
+
+# name of container is "server"
+# docker-compose up -d (run container using exist image if image not exist create new one, -d represent detach console )
+# docker-compose down (delete container will not delet original image)
+# docker-compose up --build (rebuild image and run container)
+# docker ps (list running container)
+# docker exec -it server bash (enter container command line)
+# docker logs server -f (enter console of container)
+# docker inspect server (config of container include network)
