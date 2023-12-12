@@ -1,6 +1,6 @@
 pnpm-lock.yaml
 .env
-.*
+.pnpm-store
 # compiled output
 /dist
 /node_modules
