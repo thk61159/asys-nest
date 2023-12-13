@@ -1,4 +1,6 @@
-FROM node:18
+ARG NODE_VERSION
+
+FROM node:${NODE_VERSION}
 
 RUN npm i -g pnpm@8.11.0 @nestjs/cli pkg
 
@@ -6,15 +8,9 @@ WORKDIR /app
 
 COPY package.json ./
 
-COPY pnpm-lock.yaml ./
-
 RUN pnpm install
 
-RUN pnpm config set store-dir /root/.local/share/pnpm/store/v3 --global
-
 COPY . ./
-
-EXPOSE 24689
 
 CMD ["pnpm", "start:debug"]
 

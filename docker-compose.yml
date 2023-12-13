@@ -4,18 +4,14 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./
+      args:
+        - NODE_VERSION=${NODE_VERSION}
     container_name: server
-    env_file:
-      - ./.env
     ports:
       - "${PORT}:${PORT}"
     volumes:
       # for read the local edit code
       - ./:/app
-      # share node_module 
-      - Modules:/app/node_modules
-      # share pnpm store node_module 
-      - pnpm:/root/.local/share/pnpm/store
       # for sqlite 
       # - ./.sqlite-db:/app/.sqlite-db
     command: yarn start:debug
@@ -47,10 +43,7 @@ volumes:
     name: mongo-db
   mysql-db:
     name: mysql-db
-  Modules:
-    name: Modules
-  pnpm:
-    name: pnpm
+
 
   # name of container is "server"
   # docker-compose up -d (run container using exist image if image not exist create new one, -d represent detach console )
