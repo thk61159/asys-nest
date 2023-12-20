@@ -12,9 +12,10 @@ services:
     volumes:
       # for read the local edit code
       - ./:/app
+      - /app/node_modules
       # for sqlite 
       # - ./.sqlite-db:/app/.sqlite-db
-    command: yarn start:debug
+    command: pnpm start:debug
 
   mongo:
     image: mongo
